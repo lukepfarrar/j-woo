@@ -49,7 +49,7 @@ public class JWufooAPI {
         if (forms == null) {
             forms = new ArrayList<Form>();
             try {
-                JSONObject json = this.makeRequest("https://" + this.account + ".wufoo.com/api/v3/forms.json");
+                JSONObject json = this.makeRequest("https://" + account + ".wufoo.com/api/v3/forms.json");
                 JSONArray rawNodes = json.getJSONArray("Forms");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
