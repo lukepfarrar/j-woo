@@ -170,7 +170,7 @@ public class Form {
                 sort,
                 sortDirection);
         System.out.println(url);
-        JSONObject json = new JSONObject();
+        JSONObject json;
         JSONArray rawNodes = new JSONArray();
         int rawCount = 0;
 
@@ -236,7 +236,7 @@ public class Form {
                 sortDirection,
                 filtersString);
         System.out.println(url);
-        JSONObject json = new JSONObject();
+        JSONObject json;
         JSONArray rawNodes = new JSONArray();
         int rawCount = 0;
 

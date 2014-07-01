@@ -162,7 +162,7 @@ public class Report {
                 sort,
                 sortDirection);
         System.out.println(url);
-        JSONObject json = new JSONObject();
+        JSONObject json;
         JSONArray rawNodes = new JSONArray();
         int rawCount = 0;
 
