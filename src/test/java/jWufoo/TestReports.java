@@ -25,9 +25,9 @@ public class TestReports extends TestBase {
 		Entry entry = report.getEntries().get(0);
 		
 		Field type_field = report.getField("Type");
-		assertTrue(entry.getFields().containsKey(type_field.ID)); 
+		assertTrue(entry.getFields().containsKey(type_field.id)); 
 		Field details_field = report.getField("Details");
-		assertFalse(entry.getFields().containsKey(details_field.ID)); 
+		assertFalse(entry.getFields().containsKey(details_field.id)); 
 	}
 
 	public void testReportEntriesAndFieldsMatch() throws IOException, JSONException, ParseException {
@@ -35,15 +35,15 @@ public class TestReports extends TestBase {
 		ArrayList<Field> fields = report.getFields();
 		Entry entry = report.getEntries().get(0);
 		for (Field field : fields) {
-			if (!field.ID.contains("LastUpdated")){
+			if (!field.id.contains("LastUpdated")){
 				if (field.getSubFields().size() > 0){
 					for (SubField subfield : field.getSubFields()) {
-						assertTrue(entry.Fields.containsKey(subfield.ID));
+						assertTrue(entry.fields.containsKey(subfield.id));
 					}
 				}
 				else {
 					if (field.getIsRequired()) {
-						assertTrue(entry.Fields.containsKey(field.ID));
+						assertTrue(entry.fields.containsKey(field.id));
 					}
 				}
 			}

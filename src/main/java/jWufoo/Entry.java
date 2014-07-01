@@ -11,27 +11,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Entry {
-	int EntryId;
-    Hashtable<String, Object> Fields;
-	String CreatedBy;
-	Date DateCreated;
-	String UpdatedBy;
-	Date DateUpdated;
-	Form Form;
+	int entryId;
+    Hashtable<String, Object> fields;
+	String createdBy;
+	Date dateCreated;
+	String updatedBy;
+	Date dateUpdated;
+	Form form;
 	ArrayList<Comment> comments;
 	
-    public int getEntryId() {return this.EntryId; }
-    public Hashtable<String, Object> getFields() {return this.Fields;}
-    public String getCreatedBy() {return this.CreatedBy; }
-    public Date getDateCreated() {return this.DateCreated; }
-    public String getUpdatedBy() {return this.UpdatedBy; }
-    public Date getDateUpdated() {return this.DateUpdated; }
+    public int getEntryId() {return this.entryId; }
+    public Hashtable<String, Object> getFields() {return this.fields;}
+    public String getCreatedBy() {return this.createdBy; }
+    public Date getDateCreated() {return this.dateCreated; }
+    public String getUpdatedBy() {return this.updatedBy; }
+    public Date getDateUpdated() {return this.dateUpdated; }
     public ArrayList<Comment> getComments() {
     	if (this.comments == null)  {
-    		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json?entryId=%s", this.Form.api.account, this.Form.Hash, this.EntryId);
+    		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json?entryId=%s", this.form.api.account, this.form.hash, this.entryId);
     		this.comments = new ArrayList<Comment>();
     		try {
-    			JSONObject json = this.Form.api.makeRequest(url);
+    			JSONObject json = this.form.api.makeRequest(url);
 				JSONArray rawNodes = json.getJSONArray("Comments");
 				int rawCount = rawNodes.length();
 				for (int i = 0; i < rawCount; i++) {
@@ -52,23 +52,23 @@ public class Entry {
     }
 		
     public Entry() {
-    	this.Fields = new Hashtable<String, Object>();
+    	this.fields = new Hashtable<String, Object>();
     }
     
 	public Entry(JSONObject json, Form form) throws JSONException, ParseException {
-		this.EntryId = json.getInt("EntryId");
-		this.CreatedBy = json.optString("CreatedBy", "");
-		this.DateCreated = Utils.getDate(json.optString("DateCreated", ""));
-		this.UpdatedBy = json.optString("UpdatedBy", "");
-		this.DateUpdated = Utils.getDate(json.optString("DateUpdated", ""));
-		this.Fields = new Hashtable<String, Object>();
-		this.Form = form;
+		this.entryId = json.getInt("EntryId");
+		this.createdBy = json.optString("CreatedBy", "");
+		this.dateCreated = Utils.getDate(json.optString("DateCreated", ""));
+		this.updatedBy = json.optString("UpdatedBy", "");
+		this.dateUpdated = Utils.getDate(json.optString("DateUpdated", ""));
+		this.fields = new Hashtable<String, Object>();
+		this.form = form;
 		
 		JSONArray fields = json.names();
 		for (int x = 0; x < fields.length(); x++){
 			String field = (String) fields.get(x);
 			//if (field.startsWith("Field")) {
-			this.Fields.put(field, json.get(field));
+			this.fields.put(field, json.get(field));
 			//}
 		}
 	}

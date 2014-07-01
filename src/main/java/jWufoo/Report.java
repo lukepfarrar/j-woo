@@ -11,52 +11,52 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Report {
-	String Name;
-	Boolean IsPublic;
-	String Url;
-    String Description;
-    Date DateCreated;
-    Date DateUpdated;
-    String Hash;
-    String LinkEntries;
-    String LinkFields;
-    String LinkEntriesCount;
-    String LinkWidgets;
+	String name;
+	Boolean isPublic;
+	String url;
+    String description;
+    Date dateCreated;
+    Date dateUpdated;
+    String hash;
+    String linkEntries;
+    String linkFields;
+    String linkEntriesCount;
+    String linkWidgets;
     JWufooAPI api;
     ArrayList<Field> fields;
     ArrayList<Widget> widgets;
     
-    public String getName() {return this.Name; }
-    public String getDescription() {return this.Description;}
-    public String getUrl() {return this.Url;}
-    public Boolean getIsPublic() {return this.IsPublic;}
-    public Date getDateCreated() {return this.DateCreated;}
-    public Date getDateUpdated() {return this.DateUpdated;}
-    public String getHash() {return this.Hash;}
+    public String getName() {return this.name; }
+    public String getDescription() {return this.description;}
+    public String getUrl() {return this.url;}
+    public Boolean getIsPublic() {return this.isPublic;}
+    public Date getDateCreated() {return this.dateCreated;}
+    public Date getDateUpdated() {return this.dateUpdated;}
+    public String getHash() {return this.hash;}
     
 	public Report(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
 		this.api = api;
-		this.Name = json.getString("Name");
-		this.Description = json.getString("Description");
-		this.Url = json.getString("Url");
-		this.IsPublic = Utils.getBoolean(json.getString("IsPublic"));
-		this.DateCreated = Utils.getDate(json.getString("DateCreated"));
-		this.DateUpdated = Utils.getDate(json.getString("DateUpdated"));
-		this.Hash = json.getString("Hash");
-		this.LinkEntries = json.getString("LinkEntries");
-		this.LinkFields = json.getString("LinkFields");
-		this.LinkEntriesCount = json.getString("LinkEntriesCount");
-		this.LinkWidgets = json.getString("LinkWidgets");
+		this.name = json.getString("Name");
+		this.description = json.getString("Description");
+		this.url = json.getString("Url");
+		this.isPublic = Utils.getBoolean(json.getString("IsPublic"));
+		this.dateCreated = Utils.getDate(json.getString("DateCreated"));
+		this.dateUpdated = Utils.getDate(json.getString("DateUpdated"));
+		this.hash = json.getString("Hash");
+		this.linkEntries = json.getString("LinkEntries");
+		this.linkFields = json.getString("LinkFields");
+		this.linkEntriesCount = json.getString("LinkEntriesCount");
+		this.linkWidgets = json.getString("LinkWidgets");
 	}
 	
 	public Field getField(String title) {
 		ArrayList<Field> fields = new ArrayList<Field>();
 		fields = this.getFields();
 		for (Field field : fields) {
-			if (field.Title.contains(title)) {
+			if (field.title.contains(title)) {
 				return field;
 			}
-			else if (field.ID.contains(title)){
+			else if (field.id.contains(title)){
 				return field;
 			}
 		}
@@ -67,7 +67,7 @@ public class Report {
 		if (this.fields == null) {
 			this.fields = new ArrayList<Field>();
 			try {
-				JSONObject json = this.api.makeRequest(this.LinkFields);
+				JSONObject json = this.api.makeRequest(this.linkFields);
 				JSONObject fields = json.getJSONObject("Fields");
 				@SuppressWarnings("unchecked")
 				Iterator<String> keys = fields.keys(); 
@@ -93,7 +93,7 @@ public class Report {
 		if (this.widgets == null) {
 			this.widgets = new ArrayList<Widget>();
 			try {
-				JSONObject json = this.api.makeRequest(this.LinkWidgets);
+				JSONObject json = this.api.makeRequest(this.linkWidgets);
 				JSONArray rawNodes = json.getJSONArray("Widgets");
 				int rawCount = rawNodes.length();
 				for (int i = 0; i < rawCount; i++) {
@@ -132,7 +132,7 @@ public class Report {
 	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
 	    ArrayList<Entry> entries = new ArrayList<Entry>();
 		String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s", 
-				this.LinkEntries, 
+				this.linkEntries, 
 				pageStart,
 				pageSize,
 				sort,
@@ -168,6 +168,6 @@ public class Report {
 	}
 	
 	public String getLink() {
-		return String.format("https://%s.wufoo.com/reports/%s/", this.api.account, this.Hash);
+		return String.format("https://%s.wufoo.com/reports/%s/", this.api.account, this.hash);
 	}
 }

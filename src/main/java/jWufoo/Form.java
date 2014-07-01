@@ -11,68 +11,68 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Form {
-	String Name;
-    String Description;
-    String RedirectMessage;
-    String Url;
-    String Email;
-    Boolean IsPublic;
-    String Language;
-    Date StartDate;
-    Date EndDate;
-    int EntryLimit;
-    Date DateCreated;
-    Date DateUpdated;
-    String Hash;
-    String LinkEntries;
-    String LinkFields;
-    String LinkEntriesCount;
+	String name;
+    String description;
+    String redirectMessage;
+    String url;
+    String email;
+    Boolean isPublic;
+    String language;
+    Date startDate;
+    Date endDate;
+    int entryLimit;
+    Date dateCreated;
+    Date dateUpdated;
+    String hash;
+    String linkEntries;
+    String linkFields;
+    String linkEntriesCount;
     JWufooAPI api;
     ArrayList<Field> fields;
     ArrayList<Comment> comments;
 	
-    public String getName() {return this.Name; }
-    public String getDescription() {return this.Description;}
-    public String getRedirectMessage() {return this.RedirectMessage;}
-    public String getUrl() {return this.Url;}
-    public String getEmail() {return this.Email;}
-    public Boolean getIsPublic() {return this.IsPublic;}
-    public String getLanguage() {return this.Language;}
-    public Date getStartDate() {return this.StartDate;}
-    public Date getEndDate() {return this.EndDate;}
-    public int getEntryLimit() {return this.EntryLimit;}
-    public Date getDateCreated() {return this.DateCreated;}
-    public Date getDateUpdated() {return this.DateUpdated;}
-    public String getHash() {return this.Hash;}
+    public String getName() {return this.name; }
+    public String getDescription() {return this.description;}
+    public String getRedirectMessage() {return this.redirectMessage;}
+    public String getUrl() {return this.url;}
+    public String getEmail() {return this.email;}
+    public Boolean getIsPublic() {return this.isPublic;}
+    public String getLanguage() {return this.language;}
+    public Date getStartDate() {return this.startDate;}
+    public Date getEndDate() {return this.endDate;}
+    public int getEntryLimit() {return this.entryLimit;}
+    public Date getDateCreated() {return this.dateCreated;}
+    public Date getDateUpdated() {return this.dateUpdated;}
+    public String getHash() {return this.hash;}
     
 	public Form(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
 		this.api = api;
-		this.Name = json.getString("Name");
-		this.Description = json.getString("Description");
-		this.RedirectMessage = json.getString("RedirectMessage");
-		this.Url = json.getString("Url");
-		this.Email = json.getString("Email");
-		this.IsPublic = Utils.getBoolean(json.getString("IsPublic"));
-		this.Language = json.getString("Language");
-		this.StartDate = Utils.getDate(json.getString("StartDate"));
-		this.EndDate = Utils.getDate(json.getString("EndDate"));
-		this.EntryLimit = json.getInt("EntryLimit");
-		this.DateCreated = Utils.getDate(json.getString("DateCreated"));
-		this.DateUpdated = Utils.getDate(json.getString("DateUpdated"));
-		this.Hash = json.getString("Hash");
-		this.LinkEntries = json.getString("LinkEntries");
-		this.LinkFields = json.getString("LinkFields");
-		this.LinkEntriesCount = json.getString("LinkEntriesCount");
+		this.name = json.getString("Name");
+		this.description = json.getString("Description");
+		this.redirectMessage = json.getString("RedirectMessage");
+		this.url = json.getString("Url");
+		this.email = json.getString("Email");
+		this.isPublic = Utils.getBoolean(json.getString("IsPublic"));
+		this.language = json.getString("Language");
+		this.startDate = Utils.getDate(json.getString("StartDate"));
+		this.endDate = Utils.getDate(json.getString("EndDate"));
+		this.entryLimit = json.getInt("EntryLimit");
+		this.dateCreated = Utils.getDate(json.getString("DateCreated"));
+		this.dateUpdated = Utils.getDate(json.getString("DateUpdated"));
+		this.hash = json.getString("Hash");
+		this.linkEntries = json.getString("LinkEntries");
+		this.linkFields = json.getString("LinkFields");
+		this.linkEntriesCount = json.getString("LinkEntriesCount");
 	}
 	
 	public Field getField(String title) {
 		ArrayList<Field> fields = new ArrayList<Field>();
 		fields = this.getFields();
 		for (Field field : fields) {
-			if (field.Title.contains(title)) {
+			if (field.title.contains(title)) {
 				return field;
 			}
-			else if (field.ID.contains(title)){
+			else if (field.id.contains(title)){
 				return field;
 			}
 		}
@@ -83,7 +83,7 @@ public class Form {
 		if (this.fields == null) {
 			this.fields = new ArrayList<Field>();
 			try {
-				JSONObject json = this.api.makeRequest(this.LinkFields);
+				JSONObject json = this.api.makeRequest(this.linkFields);
 				JSONArray rawNodes = json.getJSONArray("Fields");
 				int rawCount = rawNodes.length();
 				for (int i = 0; i < rawCount; i++) {
@@ -122,7 +122,7 @@ public class Form {
 	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
 	    ArrayList<Entry> entries = new ArrayList<Entry>();
 		String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s", 
-				this.LinkEntries, 
+				this.linkEntries, 
 				pageStart,
 				pageSize,
 				sort,
@@ -178,12 +178,12 @@ public class Form {
 		StringBuilder filtersBuilder = new StringBuilder();
 		for (int looper = 0; looper < filters.size(); looper++) {
 			Filter filter = filters.get(looper);
-			filtersBuilder.append(String.format("&Filter%s=%s+%s+%s", looper+1, filter.getField().ID, filter.getOperator(), filter.getValue()));
+			filtersBuilder.append(String.format("&Filter%s=%s+%s+%s", looper+1, filter.getField().id, filter.getOperator(), filter.getValue()));
 		}
 	    String filtersString = filtersBuilder.toString();
 	    
 	    String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s%s", 
-				this.LinkEntries, 
+				this.linkEntries, 
 				pageStart,
 				pageSize,
 				sort,
@@ -221,7 +221,7 @@ public class Form {
 	
 	public ArrayList<Comment> getComments() {
     	if (this.comments == null)  {
-    		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json", this.api.account, this.Hash);
+    		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json", this.api.account, this.hash);
     		this.comments = new ArrayList<Comment>();
     		try {
     			JSONObject json = this.api.makeRequest(url);
@@ -250,7 +250,7 @@ public class Form {
 		try {
 			JSONObject response = this.api.makeRequest(url, entry.getFields());
 			if (response.getInt("Success") == 1) {
-				entry.EntryId = response.getInt("EntryId");
+				entry.entryId = response.getInt("EntryId");
 			}
 			else{
 				JSONArray jsonErrors = response.getJSONArray("FieldErrors");
@@ -270,7 +270,7 @@ public class Form {
 	}
 
 	public String getLinkUrl() {
-		return String.format("http://%s.wufoo.com/forms/%s/", this.api.getAccount(), this.Hash);
+		return String.format("http://%s.wufoo.com/forms/%s/", this.api.getAccount(), this.hash);
 	}
 	
 	public String getEmbedUrl() {

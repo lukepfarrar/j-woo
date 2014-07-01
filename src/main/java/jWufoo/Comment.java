@@ -6,23 +6,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Comment {
-    int CommentId;
-	int EntryId;
-	String Text;
-	String CommentedBy;
-	Date DateCreated;
+    int commentId;
+	int entryId;
+	String text;
+	String commentedBy;
+	Date dateCreated;
     	
-    public int getCommentID() {return this.CommentId;}
-    public int getEntryID() {return this.EntryId;}
-    public String getText() {return this.Text; }
-    public String getCommentedBy() {return this.CommentedBy;}
-    public Date getDateCreated() {return this.DateCreated;}
+    public int getCommentID() {return this.commentId;}
+    public int getEntryID() {return this.entryId;}
+    public String getText() {return this.text; }
+    public String getCommentedBy() {return this.commentedBy;}
+    public Date getDateCreated() {return this.dateCreated;}
     
 	public Comment(JSONObject json) throws JSONException, ParseException {
-		this.CommentId = json.getInt("CommentId");
-		this.EntryId = json.getInt("EntryId");
-		this.Text = json.getString("Text");
-		this.CommentedBy = json.getString("CommentedBy");
-		this.DateCreated = Utils.getDate(json.getString("DateCreated"));	
+		this.commentId = json.getInt("CommentId");
+		this.entryId = json.getInt("EntryId");
+		this.text = json.getString("Text");
+		this.commentedBy = json.getString("CommentedBy");
+		this.dateCreated = Utils.getDate(json.getString("DateCreated"));	
 	}
 }

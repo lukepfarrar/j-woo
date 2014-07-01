@@ -8,27 +8,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Field {
-	String Title;
-    String Type;
-    String ID;
-    Boolean IsRequired;
+	String title;
+    String type;
+    String id;
+    Boolean isRequired;
     ArrayList<SubField> subFields;
     
-    public String getTitle() {return this.Title; }
-    public String getType() {return this.Type;}
-    public String getID() {return this.ID;}
-    public Boolean getIsRequired() {return this.IsRequired;}
+    public String getTitle() {return this.title; }
+    public String getType() {return this.type;}
+    public String getID() {return this.id;}
+    public Boolean getIsRequired() {return this.isRequired;}
     public ArrayList<SubField> getSubFields() {return this.subFields;}
     
 	public Field(JSONObject json) throws JSONException, ParseException {
-		this.Title = json.getString("Title");
-		this.Type = json.getString("Type");
-		this.ID = json.getString("ID");
+		this.title = json.getString("Title");
+		this.type = json.getString("Type");
+		this.id = json.getString("ID");
 		if (json.has("IsRequired")) {
-			this.IsRequired = Utils.getBoolean(json.getString("IsRequired"));
+			this.isRequired = Utils.getBoolean(json.getString("IsRequired"));
 		}
 		else {
-			this.IsRequired = false;
+			this.isRequired = false;
 		}
 		this.subFields = new ArrayList<SubField>();
 		if (json.has("SubFields")) {

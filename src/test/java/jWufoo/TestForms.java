@@ -13,9 +13,9 @@ public class TestForms extends TestBase {
 		ArrayList<Field> fields = api.getForms().get(0).getFields();
 		assertEquals(11, fields.size());
 		Field nameField = api.getForms().get(0).getField("Customer");
-		assertEquals("Field1", nameField.ID);
+		assertEquals("Field1", nameField.id);
 		Form form = api.getForms().get(0);
-		assertEquals("Robert Smith", form.getEntries().get(0).getFields().get(nameField.ID));
+		assertEquals("Robert Smith", form.getEntries().get(0).getFields().get(nameField.id));
 	}
 
 	public void testFormEntriesAndFieldsMatch() {
@@ -23,9 +23,9 @@ public class TestForms extends TestBase {
 		ArrayList<Field> fields = form.getFields();
 		Entry entry = form.getEntries().get(0);
 		for (Field field : fields) {
-			System.out.println(field.ID);
-			if (!field.ID.contains("LastUpdated")){
-				assertTrue(entry.Fields.containsKey(field.ID));				
+			System.out.println(field.id);
+			if (!field.id.contains("LastUpdated")){
+				assertTrue(entry.fields.containsKey(field.id));				
 			}
 		}
 	}

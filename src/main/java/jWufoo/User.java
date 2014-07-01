@@ -5,78 +5,78 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class User {
-	String User;
-	String Email;
-	String TimeZone;
-	String Company;
-	Boolean IsAccountOwner;
-	Boolean CreateForms;
-	Boolean CreateReports;
-	Boolean CreateThemes;
-	Boolean AdminAccess;
-	String ApiKey;
-	String Hash;
+	String user;
+	String email;
+	String timeZone;
+	String company;
+	Boolean isAccountOwner;
+	Boolean createForms;
+	Boolean createReports;
+	Boolean createThemes;
+	Boolean adminAccess;
+	String apiKey;
+	String hash;
 	//String Image;
-	String ImageUrlSmall;
-	String ImageUrlBig;
+	String imageUrlSmall;
+	String imageUrlBig;
 	JWufooAPI api;
 	
 	public String getUser() {
-		return User;
+		return user;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public String getTimeZone() {
-		return TimeZone;
+		return timeZone;
 	}
 	public String getCompany() {
-		return Company;
+		return company;
 	}
 	public Boolean getIsAccountOwner() {
-		return IsAccountOwner;
+		return isAccountOwner;
 	}
 	public Boolean getCreateForms() {
-		return CreateForms;
+		return createForms;
 	}
 	public Boolean getCreateReports() {
-		return CreateReports;
+		return createReports;
 	}
 	public Boolean getCreateThemes() {
-		return CreateThemes;
+		return createThemes;
 	}
 	public Boolean getAdminAccess() {
-		return AdminAccess;
+		return adminAccess;
 	}
 	public String getApiKey() {
-		return ApiKey;
+		return apiKey;
 	}
 	public String getHash() {
-		return Hash;
+		return hash;
 	}
 	public String getImageUrlSmall() {
-		return this.ImageUrlSmall;//String.format("https://%s.wufoo.com/images/avatars/small/%s.png", api.account, Image);
+		return this.imageUrlSmall;//String.format("https://%s.wufoo.com/images/avatars/small/%s.png", api.account, Image);
 	}
 	public String getImageUrlBig() {
-		return this.ImageUrlBig;//String.format("https://%s.wufoo.com/images/avatars/big/%s.png", api.account, Image);
+		return this.imageUrlBig;//String.format("https://%s.wufoo.com/images/avatars/big/%s.png", api.account, Image);
 	}
 
 	
 	public User(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
 		this.api = api;
-		this.User = json.getString("User");
-		this.Email = json.getString("Email");
-		this.TimeZone = json.getString("TimeZone");
-		this.Company = json.getString("Company");
-		this.IsAccountOwner = Utils.getBoolean(json.getString("IsAccountOwner"));
-		this.CreateForms = Utils.getBoolean(json.getString("CreateForms"));
-		this.CreateReports = Utils.getBoolean(json.getString("CreateReports"));
-		this.CreateThemes = Utils.getBoolean(json.getString("CreateThemes"));
-		this.AdminAccess = Utils.getBoolean(json.getString("AdminAccess"));
-		this.ApiKey = json.getString("ApiKey");
-		this.Hash = json.getString("Hash");
+		this.user = json.getString("User");
+		this.email = json.getString("Email");
+		this.timeZone = json.getString("TimeZone");
+		this.company = json.getString("Company");
+		this.isAccountOwner = Utils.getBoolean(json.getString("IsAccountOwner"));
+		this.createForms = Utils.getBoolean(json.getString("CreateForms"));
+		this.createReports = Utils.getBoolean(json.getString("CreateReports"));
+		this.createThemes = Utils.getBoolean(json.getString("CreateThemes"));
+		this.adminAccess = Utils.getBoolean(json.getString("AdminAccess"));
+		this.apiKey = json.getString("ApiKey");
+		this.hash = json.getString("Hash");
 		//this.Image = json.getString("Image");
-		this.ImageUrlSmall = json.getString("ImageUrlSmall");
-		this.ImageUrlBig = json.getString("ImageUrlBig");
+		this.imageUrlSmall = json.getString("ImageUrlSmall");
+		this.imageUrlBig = json.getString("ImageUrlBig");
 	}
 }
