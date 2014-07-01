@@ -1,9 +1,12 @@
 package jWufoo;
 
 import java.util.List;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class TestUsers extends TestBase {
 
+    @Test
     public void testGetUsers() {
         List<User> users = api.getUsers();
         assertEquals(1, users.size());
@@ -13,6 +16,7 @@ public class TestUsers extends TestBase {
         assertEquals("megamark16@gmail.com", user.getEmail());
     }
 
+    @Test
     public void testGetUserImages() {
         List<User> users = api.getUsers();
         User user = users.get(0);

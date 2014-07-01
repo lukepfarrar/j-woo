@@ -5,11 +5,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import static org.junit.Assert.*;
 
 import org.json.JSONException;
+import org.junit.Test;
 
 public class TestEntries extends TestBase {
 
+    @Test
     public void testGetFormEntries() throws IOException, JSONException, ParseException {
         Form form = api.getForms().get(0);
         List<Entry> entries = form.getEntries();
@@ -17,6 +20,7 @@ public class TestEntries extends TestBase {
         assertEquals("Robert Smith", entries.get(0).fields.get("Field1"));
     }
 
+    @Test
     public void testGetFormEntriesSorting() {
         Form form = api.getForms().get(0);
         List<Entry> entries = form.getEntries("EntryID", "DESC");
@@ -25,6 +29,7 @@ public class TestEntries extends TestBase {
         assertEquals("Mark Ransom", entries.get(0).fields.get("Field1"));
     }
 
+    @Test
     public void testGetFormEntriesPaging() {
         Form form = api.getForms().get(0);
         List<Entry> entries2 = form.getEntries(2, 2);
@@ -33,6 +38,7 @@ public class TestEntries extends TestBase {
         assertEquals(2, entries1.size());
     }
 
+    @Test
     public void testSearchFormEntriesByComment() {
         Form form = api.getForms().get(0);
         Field commentsField = form.getField("Comments");
@@ -42,6 +48,7 @@ public class TestEntries extends TestBase {
         assertEquals(2, entries.size());
     }
 
+    @Test
     public void testSearchFormEntriesByEmail() {
         Form form = api.getForms().get(0);
         Field commentsField = form.getField("Email");
@@ -51,6 +58,7 @@ public class TestEntries extends TestBase {
         assertEquals(1, entries.size());
     }
 
+    @Test
     public void testAddEntry() {
         Form form = api.getForms().get(1);
         Entry entry = new Entry();
@@ -62,6 +70,7 @@ public class TestEntries extends TestBase {
         assertFalse(0 == entry.entryId);
     }
 
+    @Test
     public void testAddEntryFail() {
         Form form = api.getForms().get(1);
         Entry entry = new Entry();
