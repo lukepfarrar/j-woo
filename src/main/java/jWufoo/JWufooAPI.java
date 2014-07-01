@@ -20,7 +20,6 @@ public class JWufooAPI {
 	
 	String key;
 	String account;
-	HttpClient client;
 	List<Form> forms;
 	List<Report> reports;
 	List<User> users;
