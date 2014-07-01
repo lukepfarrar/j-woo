@@ -2,6 +2,7 @@ package jWufoo;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,13 +13,13 @@ public class Field {
     String type;
     String id;
     Boolean isRequired;
-    ArrayList<SubField> subFields;
+    List<SubField> subFields;
     
     public String getTitle() {return this.title; }
     public String getType() {return this.type;}
     public String getID() {return this.id;}
     public Boolean getIsRequired() {return this.isRequired;}
-    public ArrayList<SubField> getSubFields() {return this.subFields;}
+    public List<SubField> getSubFields() {return this.subFields;}
     
 	public Field(JSONObject json) throws JSONException, ParseException {
 		this.title = json.getString("Title");

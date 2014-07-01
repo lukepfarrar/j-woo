@@ -1,10 +1,11 @@
 package jWufoo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +29,8 @@ public class Form {
     String linkFields;
     String linkEntriesCount;
     JWufooAPI api;
-    ArrayList<Field> fields;
-    ArrayList<Comment> comments;
+    List<Field> fields;
+    List<Comment> comments;
 	
     public String getName() {return this.name; }
     public String getDescription() {return this.description;}
@@ -66,7 +67,7 @@ public class Form {
 	}
 	
 	public Field getField(String title) {
-		ArrayList<Field> fields = new ArrayList<Field>();
+		List<Field> fields = new ArrayList<Field>();
 		fields = this.getFields();
 		for (Field field : fields) {
 			if (field.title.contains(title)) {
@@ -79,7 +80,7 @@ public class Form {
 		return null;
 	}
 
-	public ArrayList<Field> getFields() {
+	public List<Field> getFields() {
 		if (this.fields == null) {
 			this.fields = new ArrayList<Field>();
 			try {
@@ -103,24 +104,24 @@ public class Form {
 		return this.fields;
 	}
 	
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort) {
+	public List<Entry> getEntries(int pageStart, int pageSize, String sort) {
 		return getEntries(pageStart, pageSize, sort, "DESC");
 	}
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize) {
+	public List<Entry> getEntries(int pageStart, int pageSize) {
 		return getEntries(pageStart, pageSize, "DateCreated", "DESC");
 	}
-	public ArrayList<Entry> getEntries(String sort, String sortDirection) {
+	public List<Entry> getEntries(String sort, String sortDirection) {
 		return getEntries(0, 100, sort, sortDirection);
 	}
-	public ArrayList<Entry> getEntries(String sort) {
+	public List<Entry> getEntries(String sort) {
 		return getEntries(0, 100, sort, "DESC");
 	}
-	public ArrayList<Entry> getEntries() {
+	public List<Entry> getEntries() {
 		return getEntries(0, 100, "DateCreated", "DESC");
 	}
 
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
-	    ArrayList<Entry> entries = new ArrayList<Entry>();
+	public List<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
+	    List<Entry> entries = new ArrayList<Entry>();
 		String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s", 
 				this.linkEntries, 
 				pageStart,
@@ -157,24 +158,24 @@ public class Form {
 		return entries;
 	}
 
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters, int pageStart, int pageSize, String sort) {
+	public List<Entry> searchEntries(List<Filter> filters, int pageStart, int pageSize, String sort) {
 		return searchEntries(filters, pageStart, pageSize, sort, "DESC");
 	}
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters, int pageStart, int pageSize) {
+	public List<Entry> searchEntries(List<Filter> filters, int pageStart, int pageSize) {
 		return searchEntries(filters, pageStart, pageSize, "DateCreated", "DESC");
 	}
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters, String sort, String sortDirection) {
+	public List<Entry> searchEntries(List<Filter> filters, String sort, String sortDirection) {
 		return searchEntries(filters, 0, 100, sort, sortDirection);
 	}
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters, String sort) {
+	public List<Entry> searchEntries(List<Filter> filters, String sort) {
 		return searchEntries(filters, 0, 100, sort, "DESC");
 	}
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters) {
+	public List<Entry> searchEntries(List<Filter> filters) {
 		return searchEntries(filters, 0, 100, "DateCreated", "DESC");
 	}
 
-	public ArrayList<Entry> searchEntries(ArrayList<Filter> filters, int pageStart, int pageSize, String sort, String sortDirection) {
-	    ArrayList<Entry> entries = new ArrayList<Entry>();
+	public List<Entry> searchEntries(List<Filter> filters, int pageStart, int pageSize, String sort, String sortDirection) {
+	    List<Entry> entries = new ArrayList<Entry>();
 		StringBuilder filtersBuilder = new StringBuilder();
 		for (int looper = 0; looper < filters.size(); looper++) {
 			Filter filter = filters.get(looper);
@@ -219,7 +220,7 @@ public class Form {
 		return entries;
 	}
 	
-	public ArrayList<Comment> getComments() {
+	public List<Comment> getComments() {
     	if (this.comments == null)  {
     		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json", this.api.account, this.hash);
     		this.comments = new ArrayList<Comment>();

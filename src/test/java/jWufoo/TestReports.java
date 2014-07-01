@@ -2,20 +2,20 @@ package jWufoo;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONException;
 
 public class TestReports extends TestBase {
 
 	public void testGetReports() throws IOException, JSONException, ParseException {
-		ArrayList<Report> reports = api.getReports();
+		List<Report> reports = api.getReports();
 		assertEquals(2, reports.size());
 		assertEquals("Untitled Report", reports.get(1).getName());
 	}
 	
 	public void testGetReportEntries() throws IOException, JSONException, ParseException {
 		Report report = api.getReports().get(1);
-		ArrayList<Entry> entries = report.getEntries();
+		List<Entry> entries = report.getEntries();
 		assertEquals(3, entries.size());
 		assertEquals("Mark Ransom", entries.get(0).getFields().get("Field1"));
 	}
@@ -32,7 +32,7 @@ public class TestReports extends TestBase {
 
 	public void testReportEntriesAndFieldsMatch() throws IOException, JSONException, ParseException {
 		Report report = api.getReports().get(1);
-		ArrayList<Field> fields = report.getFields();
+		List<Field> fields = report.getFields();
 		Entry entry = report.getEntries().get(0);
 		for (Field field : fields) {
 			if (!field.id.contains("LastUpdated")){
@@ -52,7 +52,7 @@ public class TestReports extends TestBase {
 
 	public void testReportWidgetsGetter() throws IOException, JSONException, ParseException {
 		Report report = api.getReports().get(1);
-		ArrayList<Widget> widgets = report.getWidgets();
+		List<Widget> widgets = report.getWidgets();
 		assertEquals(1, widgets.size());
 		assertEquals("fieldChart", widgets.get(0).getType());
 	}

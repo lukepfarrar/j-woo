@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Date;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +19,7 @@ public class Entry {
 	String updatedBy;
 	Date dateUpdated;
 	Form form;
-	ArrayList<Comment> comments;
+	List<Comment> comments;
 	
     public int getEntryId() {return this.entryId; }
     public Hashtable<String, Object> getFields() {return this.fields;}
@@ -26,7 +27,7 @@ public class Entry {
     public Date getDateCreated() {return this.dateCreated; }
     public String getUpdatedBy() {return this.updatedBy; }
     public Date getDateUpdated() {return this.dateUpdated; }
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
     	if (this.comments == null)  {
     		String url = String.format("https://%s.wufoo.com/api/v3/forms/%s/comments.json?entryId=%s", this.form.api.account, this.form.hash, this.entryId);
     		this.comments = new ArrayList<Comment>();

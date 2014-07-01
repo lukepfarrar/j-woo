@@ -1,10 +1,11 @@
 package jWufoo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,8 +24,8 @@ public class Report {
     String linkEntriesCount;
     String linkWidgets;
     JWufooAPI api;
-    ArrayList<Field> fields;
-    ArrayList<Widget> widgets;
+    List<Field> fields;
+    List<Widget> widgets;
     
     public String getName() {return this.name; }
     public String getDescription() {return this.description;}
@@ -50,7 +51,7 @@ public class Report {
 	}
 	
 	public Field getField(String title) {
-		ArrayList<Field> fields = new ArrayList<Field>();
+		List<Field> fields = new ArrayList<Field>();
 		fields = this.getFields();
 		for (Field field : fields) {
 			if (field.title.contains(title)) {
@@ -63,7 +64,7 @@ public class Report {
 		return null;
 	}
 
-	public ArrayList<Field> getFields() {
+	public List<Field> getFields() {
 		if (this.fields == null) {
 			this.fields = new ArrayList<Field>();
 			try {
@@ -89,7 +90,7 @@ public class Report {
 		return this.fields;
 	}
 	
-	public ArrayList<Widget> getWidgets() {
+	public List<Widget> getWidgets() {
 		if (this.widgets == null) {
 			this.widgets = new ArrayList<Widget>();
 			try {
@@ -113,24 +114,24 @@ public class Report {
 		return this.widgets;
 	}
 	
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort) {
+	public List<Entry> getEntries(int pageStart, int pageSize, String sort) {
 		return getEntries(pageStart, pageSize, sort, "DESC");
 	}
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize) {
+	public List<Entry> getEntries(int pageStart, int pageSize) {
 		return getEntries(pageStart, pageSize, "DateCreated", "DESC");
 	}
-	public ArrayList<Entry> getEntries(String sort, String sortDirection) {
+	public List<Entry> getEntries(String sort, String sortDirection) {
 		return getEntries(0, 100, sort, sortDirection);
 	}
-	public ArrayList<Entry> getEntries(String sort) {
+	public List<Entry> getEntries(String sort) {
 		return getEntries(0, 100, sort, "DESC");
 	}
-	public ArrayList<Entry> getEntries() {
+	public List<Entry> getEntries() {
 		return getEntries(0, 100, "DateCreated", "DESC");
 	}
 
-	public ArrayList<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
-	    ArrayList<Entry> entries = new ArrayList<Entry>();
+	public List<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
+	    List<Entry> entries = new ArrayList<Entry>();
 		String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s", 
 				this.linkEntries, 
 				pageStart,

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.json.JSONException;
 
@@ -11,14 +12,14 @@ public class TestEntries extends TestBase {
 	
 	public void testGetFormEntries() throws IOException, JSONException, ParseException {
 		Form form = api.getForms().get(0);
-		ArrayList<Entry> entries = form.getEntries();
+		List<Entry> entries = form.getEntries();
 		assertEquals(3, entries.size());
 		assertEquals("Robert Smith", entries.get(0).fields.get("Field1"));
 	}
 
 	public void testGetFormEntriesSorting() {
 		Form form = api.getForms().get(0);
-		ArrayList<Entry> entries = form.getEntries("EntryID", "DESC");
+		List<Entry> entries = form.getEntries("EntryID", "DESC");
 		assertEquals("Robert Smith", entries.get(0).fields.get("Field1"));
 		entries = form.getEntries("EntryID", "ASC");
 		assertEquals("Mark Ransom", entries.get(0).fields.get("Field1"));
@@ -26,27 +27,27 @@ public class TestEntries extends TestBase {
 
 	public void testGetFormEntriesPaging() {
 		Form form = api.getForms().get(0);
-		ArrayList<Entry>entries2 = form.getEntries(2,2);
+		List<Entry>entries2 = form.getEntries(2,2);
 		assertEquals(1, entries2.size());
-		ArrayList<Entry> entries1 = form.getEntries(0,2);
+		List<Entry> entries1 = form.getEntries(0,2);
 		assertEquals(2, entries1.size());
 	}
 
 	public void testSearchFormEntriesByComment() {
 		Form form = api.getForms().get(0);
 		Field commentsField = form.getField("Comments");
-		ArrayList<Filter> filters = new ArrayList<Filter>();
+		List<Filter> filters = new ArrayList<Filter>();
 		filters.add(new Filter(commentsField, Filter.OPERATOR.Contains, "Test"));
-		ArrayList<Entry> entries = form.searchEntries(filters);
+		List<Entry> entries = form.searchEntries(filters);
 		assertEquals(2, entries.size());
 	}
 	
 	public void testSearchFormEntriesByEmail() {
 		Form form = api.getForms().get(0);
 		Field commentsField = form.getField("Email");
-		ArrayList<Filter> filters = new ArrayList<Filter>();
+		List<Filter> filters = new ArrayList<Filter>();
 		filters.add(new Filter(commentsField, Filter.OPERATOR.Contains, "gmail"));
-		ArrayList<Entry> entries = form.searchEntries(filters);
+		List<Entry> entries = form.searchEntries(filters);
 		assertEquals(1, entries.size());
 	}
 

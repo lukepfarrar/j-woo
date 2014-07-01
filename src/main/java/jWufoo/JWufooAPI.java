@@ -1,10 +1,11 @@
 package jWufoo;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,10 +20,10 @@ public class JWufooAPI {
 	
 	String key;
 	String account;
-	ArrayList<Form> forms;
-	ArrayList<Report> reports;
-	ArrayList<User> users;
 	HttpClient client;
+	List<Form> forms;
+	List<Report> reports;
+	List<User> users;
 	
 	public JWufooAPI(String key, String account) {
 		this.key = key;
@@ -35,7 +36,7 @@ public class JWufooAPI {
 	public String getAccount() { return this.account; }
 	public void setAccount(String account) { this.account = account; }
 
-	public ArrayList<Form> getForms() {
+	public List<Form> getForms() {
 		if (this.forms == null) {
 			this.forms = new ArrayList<Form>();
 			try {
@@ -53,7 +54,7 @@ public class JWufooAPI {
 		return this.forms;
 	}
 
-	public ArrayList<Report> getReports() {
+	public List<Report> getReports() {
 		if (this.reports == null) {
 			this.reports = new ArrayList<Report>();
 			try {
@@ -71,7 +72,7 @@ public class JWufooAPI {
 		return this.reports;
 	}
 
-	public ArrayList<User> getUsers() {
+	public List<User> getUsers() {
 		if (this.users == null) {
 			this.users = new ArrayList<User>();
 			JSONObject json;

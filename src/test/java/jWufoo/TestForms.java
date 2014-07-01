@@ -2,15 +2,15 @@ package jWufoo;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import org.json.JSONException;
 
 public class TestForms extends TestBase {
 
 	public void testGetFormFields() throws IOException, JSONException, ParseException {
-		ArrayList<Field> fields = api.getForms().get(0).getFields();
+		List<Field> fields = api.getForms().get(0).getFields();
 		assertEquals(11, fields.size());
 		Field nameField = api.getForms().get(0).getField("Customer");
 		assertEquals("Field1", nameField.id);
@@ -20,7 +20,7 @@ public class TestForms extends TestBase {
 
 	public void testFormEntriesAndFieldsMatch() {
 		Form form = api.getForms().get(0);
-		ArrayList<Field> fields = form.getFields();
+		List<Field> fields = form.getFields();
 		Entry entry = form.getEntries().get(0);
 		for (Field field : fields) {
 			System.out.println(field.id);
@@ -31,7 +31,7 @@ public class TestForms extends TestBase {
 	}
 
 	public void testGetForms() {
-		ArrayList<Form> forms = api.getForms();
+		List<Form> forms = api.getForms();
 		assertEquals(2, forms.size());
 		assertEquals("Contact Form", forms.get(0).getName());
 		assertEquals("This is my form. Please fill it out. It's awesome!", forms.get(0).getDescription());
@@ -48,7 +48,7 @@ public class TestForms extends TestBase {
 
 	public void testGetFormsWithoutCredentials() {
 		JWufooAPI bad_api = new JWufooAPI("","");
-		ArrayList<Form> forms = bad_api.getForms();
+		List<Form> forms = bad_api.getForms();
 		assertEquals(0, forms.size());
 	}
 	
