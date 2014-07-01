@@ -13,11 +13,6 @@ public class Utils {
 
     public static Date getDate(String dateString) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.US);
-        try {
-            Date date = sdf.parse(dateString);
-            return date;
-        } catch (ParseException error) {
-            return null;
-        }
+        return sdf.parse(dateString);        
     }
 }
