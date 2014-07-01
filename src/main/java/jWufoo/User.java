@@ -19,7 +19,6 @@ public class User {
 	//String Image;
 	String imageUrlSmall;
 	String imageUrlBig;
-	JWufooAPI api;
 	
 	public String getUser() {
 		return user;
@@ -62,8 +61,7 @@ public class User {
 	}
 
 	
-	public User(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
-		this.api = api;
+	public User(JSONObject json) throws JSONException, ParseException {
 		this.user = json.getString("User");
 		this.email = json.getString("Email");
 		this.timeZone = json.getString("TimeZone");

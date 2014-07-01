@@ -81,7 +81,7 @@ public class JWufooAPI {
 				rawNodes = json.getJSONArray("Users");
 				int rawCount = rawNodes.length();
 				for (int i = 0; i < rawCount; i++) {
-					this.users.add(new User(rawNodes.getJSONObject(i), this));
+					this.users.add(new User(rawNodes.getJSONObject(i)));
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
