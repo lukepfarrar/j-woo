@@ -16,7 +16,7 @@ public class TestBase {
     @Before
     public void loadAccountDetails() throws FileNotFoundException, IOException {
         Properties accountProperties = new Properties();
-        accountProperties.load(new FileReader(new File("~/wufoo.properties")));
+        accountProperties.load(new FileReader(new File(System.getProperty("user.home")+File.separator+"wufoo.properties")));
         apiKey = accountProperties.getProperty("API_KEY");
         accountName = accountProperties.getProperty("ACCOUNT_NAME");
         api = new JWufooAPI(apiKey, accountName);
