@@ -23,27 +23,27 @@ public class Entry {
     List<Comment> comments;
 
     public int getEntryId() {
-        return this.entryId;
+        return entryId;
     }
 
     public Hashtable<String, Object> getFields() {
-        return this.fields;
+        return fields;
     }
 
     public String getCreatedBy() {
-        return this.createdBy;
+        return createdBy;
     }
 
     public Date getDateCreated() {
-        return this.dateCreated;
+        return dateCreated;
     }
 
     public String getUpdatedBy() {
-        return this.updatedBy;
+        return updatedBy;
     }
 
     public Date getDateUpdated() {
-        return this.dateUpdated;
+        return dateUpdated;
     }
 
     public List<Comment> getComments() {

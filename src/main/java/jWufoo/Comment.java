@@ -14,19 +14,19 @@ public class Comment {
     Date dateCreated;
 
     public int getCommentID() {
-        return this.commentId;
+        return commentId;
     }
 
     public int getEntryID() {
-        return this.entryId;
+        return entryId;
     }
 
     public String getText() {
-        return this.text;
+        return text;
     }
 
     public String getCommentedBy() {
-        return this.commentedBy;
+        return commentedBy;
     }
 
     public Date getDateCreated() {

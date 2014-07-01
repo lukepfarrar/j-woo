@@ -17,19 +17,19 @@ public class Field {
     List<SubField> subFields;
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
     public String getID() {
-        return this.id;
+        return id;
     }
 
     public Boolean getIsRequired() {
-        return this.isRequired;
+        return isRequired;
     }
 
     public List<SubField> getSubFields() {

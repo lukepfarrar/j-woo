@@ -10,15 +10,15 @@ public class SubField {
     String id;
 
     public String getLabel() {
-        return this.label;
+        return label;
     }
 
     public String getID() {
-        return this.id;
+        return id;
     }
 
     public SubField(JSONObject json) throws JSONException, ParseException {
-        this.label = json.getString("Label");
-        this.id = json.getString("ID");
+        label = json.getString("Label");
+        id = json.getString("ID");
     }
 }

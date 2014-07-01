@@ -30,60 +30,60 @@ public class JWufooAPI {
     }
 
     public String getKey() {
-        return this.key;
+        return key;
     }
 
     public void setKey(String key) {
-        this.key = key;
+        key = key;
     }
 
     public String getAccount() {
-        return this.account;
+        return account;
     }
 
     public void setAccount(String account) {
-        this.account = account;
+        account = account;
     }
 
     public List<Form> getForms() {
-        if (this.forms == null) {
-            this.forms = new ArrayList<Form>();
+        if (forms == null) {
+            forms = new ArrayList<Form>();
             try {
                 JSONObject json = this.makeRequest("https://" + this.account + ".wufoo.com/api/v3/forms.json");
                 JSONArray rawNodes = json.getJSONArray("Forms");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
-                    this.forms.add(new Form(rawNodes.getJSONObject(i), this));
+                    forms.add(new Form(rawNodes.getJSONObject(i), this));
                 }
             } catch (IOException ex) {
             } catch (ParseException ex) {
             } catch (JSONException ex) {
             }
         }
-        return this.forms;
+        return forms;
     }
 
     public List<Report> getReports() {
-        if (this.reports == null) {
-            this.reports = new ArrayList<Report>();
+        if (reports == null) {
+            reports = new ArrayList<Report>();
             try {
                 JSONObject json = this.makeRequest("https://" + this.account + ".wufoo.com/api/v3/reports.json");
                 JSONArray rawNodes = json.getJSONArray("Reports");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
-                    this.reports.add(new Report(rawNodes.getJSONObject(i), this));
+                    reports.add(new Report(rawNodes.getJSONObject(i), this));
                 }
             } catch (IOException ex) {
             } catch (ParseException ex) {
             } catch (JSONException ex) {
             }
         }
-        return this.reports;
+        return reports;
     }
 
     public List<User> getUsers() {
-        if (this.users == null) {
-            this.users = new ArrayList<User>();
+        if (users == null) {
+            users = new ArrayList<User>();
             JSONObject json;
             JSONArray rawNodes;
             try {
@@ -91,7 +91,7 @@ public class JWufooAPI {
                 rawNodes = json.getJSONArray("Users");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
-                    this.users.add(new User(rawNodes.getJSONObject(i)));
+                    users.add(new User(rawNodes.getJSONObject(i)));
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -104,7 +104,7 @@ public class JWufooAPI {
                 e.printStackTrace();
             }
         }
-        return this.users;
+        return users;
     }
 
     public JSONObject makeRequest(String url) throws IOException, JSONException {

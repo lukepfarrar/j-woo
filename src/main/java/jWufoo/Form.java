@@ -34,51 +34,51 @@ public class Form {
     List<Comment> comments;
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public String getRedirectMessage() {
-        return this.redirectMessage;
+        return redirectMessage;
     }
 
     public String getUrl() {
-        return this.url;
+        return url;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public Boolean getIsPublic() {
-        return this.isPublic;
+        return isPublic;
     }
 
     public String getLanguage() {
-        return this.language;
+        return language;
     }
 
     public Date getStartDate() {
-        return this.startDate;
+        return startDate;
     }
 
     public Date getEndDate() {
-        return this.endDate;
+        return endDate;
     }
 
     public int getEntryLimit() {
-        return this.entryLimit;
+        return entryLimit;
     }
 
     public Date getDateCreated() {
-        return this.dateCreated;
+        return dateCreated;
     }
 
     public Date getDateUpdated() {
-        return this.dateUpdated;
+        return dateUpdated;
     }
 
     public String getHash() {

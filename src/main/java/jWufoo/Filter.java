@@ -21,11 +21,11 @@ public class Filter {
     String value;
 
     public Field getField() {
-        return this.field;
+        return field;
     }
 
     public OPERATOR getOperator() {
-        return this.operator;
+        return operator;
     }
 
     @SuppressWarnings("deprecation")

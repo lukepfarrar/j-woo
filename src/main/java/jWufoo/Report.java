@@ -85,8 +85,8 @@ public class Report {
     }
 
     public List<Field> getFields() {
-        if (this.fields == null) {
-            this.fields = new ArrayList<Field>();
+        if (fields == null) {
+            fields = new ArrayList<Field>();
             try {
                 JSONObject json = this.api.makeRequest(this.linkFields);
                 JSONObject fields = json.getJSONObject("Fields");
@@ -107,18 +107,18 @@ public class Report {
                 e.printStackTrace();
             }
         }
-        return this.fields;
+        return fields;
     }
 
     public List<Widget> getWidgets() {
-        if (this.widgets == null) {
-            this.widgets = new ArrayList<Widget>();
+        if (widgets == null) {
+            widgets = new ArrayList<Widget>();
             try {
-                JSONObject json = this.api.makeRequest(this.linkWidgets);
+                JSONObject json = api.makeRequest(this.linkWidgets);
                 JSONArray rawNodes = json.getJSONArray("Widgets");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
-                    this.widgets.add(new Widget(rawNodes.getJSONObject(i), this));
+                    widgets.add(new Widget(rawNodes.getJSONObject(i), this));
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -131,7 +131,7 @@ public class Report {
                 e.printStackTrace();
             }
         }
-        return this.widgets;
+        return widgets;
     }
 
     public List<Entry> getEntries(int pageStart, int pageSize, String sort) {
@@ -157,7 +157,7 @@ public class Report {
     public List<Entry> getEntries(int pageStart, int pageSize, String sort, String sortDirection) {
         List<Entry> entries = new ArrayList<Entry>();
         String url = String.format("%s?system=true&pageStart=%d&pageSize=%d&sort=%s&sortDirection=%s",
-                this.linkEntries,
+                linkEntries,
                 pageStart,
                 pageSize,
                 sort,
@@ -168,7 +168,7 @@ public class Report {
         int rawCount = 0;
 
         try {
-            json = this.api.makeRequest(url);
+            json = api.makeRequest(url);
             rawNodes = json.getJSONArray("Entries");
             rawCount = rawNodes.length();
         } catch (JSONException e) {
