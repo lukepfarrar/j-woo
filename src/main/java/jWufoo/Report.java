@@ -45,11 +45,11 @@ public class Report {
     }
 
     public Date getDateCreated() {
-        return this.dateCreated;
+        return new Date(dateCreated.getTime());
     }
 
     public Date getDateUpdated() {
-        return this.dateUpdated;
+        return new Date(dateUpdated.getTime());
     }
 
     public String getHash() {

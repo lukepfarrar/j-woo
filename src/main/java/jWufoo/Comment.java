@@ -30,7 +30,7 @@ public class Comment {
     }
 
     public Date getDateCreated() {
-        return this.dateCreated;
+        return new Date(dateCreated.getTime());
     }
 
     public Comment(JSONObject json) throws JSONException, ParseException {

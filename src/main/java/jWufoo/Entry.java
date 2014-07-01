@@ -35,7 +35,7 @@ public class Entry {
     }
 
     public Date getDateCreated() {
-        return dateCreated;
+        return new Date(dateCreated.getTime());
     }
 
     public String getUpdatedBy() {
@@ -43,7 +43,7 @@ public class Entry {
     }
 
     public Date getDateUpdated() {
-        return dateUpdated;
+        return new Date(dateUpdated.getTime());
     }
 
     public List<Comment> getComments() {

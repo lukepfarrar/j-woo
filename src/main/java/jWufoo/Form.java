@@ -62,11 +62,11 @@ public class Form {
     }
 
     public Date getStartDate() {
-        return startDate;
+        return new Date(startDate.getTime());
     }
 
     public Date getEndDate() {
-        return endDate;
+        return new Date(endDate.getTime());
     }
 
     public int getEntryLimit() {
@@ -74,11 +74,11 @@ public class Form {
     }
 
     public Date getDateCreated() {
-        return dateCreated;
+        return new Date(dateCreated.getTime());
     }
 
     public Date getDateUpdated() {
-        return dateUpdated;
+        return new Date(dateUpdated.getTime());
     }
 
     public String getHash() {
