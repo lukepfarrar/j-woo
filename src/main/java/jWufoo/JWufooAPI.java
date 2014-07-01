@@ -15,7 +15,7 @@ import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 
-public class jWufooAPI {
+public class JWufooAPI {
 	
 	String key;
 	String account;
@@ -24,7 +24,7 @@ public class jWufooAPI {
 	ArrayList<User> users;
 	HttpClient client;
 	
-	public jWufooAPI(String key, String account) {
+	public JWufooAPI(String key, String account) {
 		this.key = key;
 		this.account = account;
 	}

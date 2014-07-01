@@ -27,7 +27,7 @@ public class Form {
     String LinkEntries;
     String LinkFields;
     String LinkEntriesCount;
-    jWufooAPI api;
+    JWufooAPI api;
     ArrayList<Field> fields;
     ArrayList<Comment> comments;
 	
@@ -45,7 +45,7 @@ public class Form {
     public Date getDateUpdated() {return this.DateUpdated;}
     public String getHash() {return this.Hash;}
     
-	public Form(JSONObject json, jWufooAPI api) throws JSONException, ParseException {
+	public Form(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
 		this.api = api;
 		this.Name = json.getString("Name");
 		this.Description = json.getString("Description");

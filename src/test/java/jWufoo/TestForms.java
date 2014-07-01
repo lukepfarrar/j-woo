@@ -47,7 +47,7 @@ public class TestForms extends TestBase {
 	}
 
 	public void testGetFormsWithoutCredentials() {
-		jWufooAPI bad_api = new jWufooAPI("","");
+		JWufooAPI bad_api = new JWufooAPI("","");
 		ArrayList<Form> forms = bad_api.getForms();
 		assertEquals(0, forms.size());
 	}

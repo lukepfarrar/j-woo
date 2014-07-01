@@ -22,7 +22,7 @@ public class Report {
     String LinkFields;
     String LinkEntriesCount;
     String LinkWidgets;
-    jWufooAPI api;
+    JWufooAPI api;
     ArrayList<Field> fields;
     ArrayList<Widget> widgets;
     
@@ -34,7 +34,7 @@ public class Report {
     public Date getDateUpdated() {return this.DateUpdated;}
     public String getHash() {return this.Hash;}
     
-	public Report(JSONObject json, jWufooAPI api) throws JSONException, ParseException {
+	public Report(JSONObject json, JWufooAPI api) throws JSONException, ParseException {
 		this.api = api;
 		this.Name = json.getString("Name");
 		this.Description = json.getString("Description");
