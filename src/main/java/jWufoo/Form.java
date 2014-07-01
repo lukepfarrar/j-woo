@@ -106,8 +106,7 @@ public class Form {
     }
 
     public Field getField(String title) {
-        List<Field> fields = new ArrayList<Field>();
-        fields = this.getFields();
+        List<Field> fields = getFields();
         for (Field field : fields) {
             if (field.title.contains(title)) {
                 return field;
