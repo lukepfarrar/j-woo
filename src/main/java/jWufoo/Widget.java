@@ -14,31 +14,31 @@ public class Widget {
     Report report;
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public String getSize() {
-        return this.size;
+        return size;
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
     public String getTextDesc() {
-        return this.typeDesc;
+        return typeDesc;
     }
 
     public String getHash() {
-        return this.hash;
+        return hash;
     }
 
     public Widget(JSONObject json, Report report) throws JSONException, ParseException {
-        this.name = json.getString("Name");
-        this.size = json.getString("Size");
-        this.type = json.getString("Type");
-        this.typeDesc = json.getString("TypeDesc");
-        this.hash = json.getString("Hash");
+        name = json.getString("Name");
+        size = json.getString("Size");
+        type = json.getString("Type");
+        typeDesc = json.getString("TypeDesc");
+        hash = json.getString("Hash");
         this.report = report;
     }
 

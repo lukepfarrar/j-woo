@@ -66,27 +66,27 @@ public class User {
     }
 
     public String getImageUrlSmall() {
-        return this.imageUrlSmall;//String.format("https://%s.wufoo.com/images/avatars/small/%s.png", api.account, Image);
+        return imageUrlSmall;//String.format("https://%s.wufoo.com/images/avatars/small/%s.png", api.account, Image);
     }
 
     public String getImageUrlBig() {
-        return this.imageUrlBig;//String.format("https://%s.wufoo.com/images/avatars/big/%s.png", api.account, Image);
+        return imageUrlBig;//String.format("https://%s.wufoo.com/images/avatars/big/%s.png", api.account, Image);
     }
 
     public User(JSONObject json) throws JSONException, ParseException {
-        this.user = json.getString("User");
-        this.email = json.getString("Email");
-        this.timeZone = json.getString("TimeZone");
-        this.company = json.getString("Company");
-        this.isAccountOwner = Utils.getBoolean(json.getString("IsAccountOwner"));
-        this.createForms = Utils.getBoolean(json.getString("CreateForms"));
-        this.createReports = Utils.getBoolean(json.getString("CreateReports"));
-        this.createThemes = Utils.getBoolean(json.getString("CreateThemes"));
-        this.adminAccess = Utils.getBoolean(json.getString("AdminAccess"));
-        this.apiKey = json.getString("ApiKey");
-        this.hash = json.getString("Hash");
+        user = json.getString("User");
+        email = json.getString("Email");
+        timeZone = json.getString("TimeZone");
+        company = json.getString("Company");
+        isAccountOwner = Utils.getBoolean(json.getString("IsAccountOwner"));
+        createForms = Utils.getBoolean(json.getString("CreateForms"));
+        createReports = Utils.getBoolean(json.getString("CreateReports"));
+        createThemes = Utils.getBoolean(json.getString("CreateThemes"));
+        adminAccess = Utils.getBoolean(json.getString("AdminAccess"));
+        apiKey = json.getString("ApiKey");
+        hash = json.getString("Hash");
         //this.Image = json.getString("Image");
-        this.imageUrlSmall = json.getString("ImageUrlSmall");
-        this.imageUrlBig = json.getString("ImageUrlBig");
+        imageUrlSmall = json.getString("ImageUrlSmall");
+        imageUrlBig = json.getString("ImageUrlBig");
     }
 }

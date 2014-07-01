@@ -34,7 +34,7 @@ public class JWufooAPI {
     }
 
     public void setKey(String key) {
-        key = key;
+        this.key = key;
     }
 
     public String getAccount() {
@@ -42,7 +42,7 @@ public class JWufooAPI {
     }
 
     public void setAccount(String account) {
-        account = account;
+        this.account = account;
     }
 
     public List<Form> getForms() {
