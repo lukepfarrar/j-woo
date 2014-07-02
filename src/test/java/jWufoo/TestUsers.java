@@ -11,9 +11,9 @@ public class TestUsers extends TestBase {
         List<User> users = api.getUsers();
         assertEquals(1, users.size());
         User user = users.get(0);
-        assertEquals("apprabbit", user.getUser());
+        assertEquals(api.account, user.getUser());
         assertTrue(user.getIsAccountOwner());
-        assertEquals("megamark16@gmail.com", user.getEmail());
+        assertEquals("bangordevelopment@thebookpeople.co.uk", user.getEmail());
     }
 
     @Test
