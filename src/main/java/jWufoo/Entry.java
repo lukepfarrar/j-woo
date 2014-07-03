@@ -78,9 +78,15 @@ public class Entry {
     public Entry(JSONObject json, Form form) throws JSONException, ParseException {
         this.entryId = json.getInt("EntryId");
         this.createdBy = json.optString("CreatedBy", "");
-        this.dateCreated = Utils.getDate(json.optString("DateCreated", ""));
+        final String dateCreatedString = json.optString("DateCreated", "");
+        this.dateCreated = Utils.getDate(dateCreatedString);
         this.updatedBy = json.optString("UpdatedBy", "");
-        this.dateUpdated = Utils.getDate(json.optString("DateUpdated", ""));
+        String dateUpdatedString = json.optString("DateUpdated", "");
+        if (dateUpdatedString == null || "".equals(dateUpdatedString)) {
+            dateUpdatedString = dateCreatedString; 
+        }
+        this.dateUpdated = Utils.getDate(dateUpdatedString);
+
         this.fields = new Hashtable<String, Object>();
         this.form = form;
 
