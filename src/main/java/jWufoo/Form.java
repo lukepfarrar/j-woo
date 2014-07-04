@@ -105,6 +105,18 @@ public class Form {
         this.linkEntriesCount = json.getString("LinkEntriesCount");
     }
 
+    public Field getFieldById(String id) {
+        List<Field> fields = getFields();
+        for (Field field : fields) {
+            if (field.id.equals(id)) {
+                return field;
+            } else if (field.id.equals(id)) {
+                return field;
+            }
+        }
+        return null;
+    }
+
     public Field getField(String title) {
         List<Field> fields = getFields();
         for (Field field : fields) {
@@ -169,7 +181,6 @@ public class Form {
                 pageSize,
                 sort,
                 sortDirection);
-        System.out.println(url);
         JSONObject json;
         JSONArray rawNodes = new JSONArray();
         int rawCount = 0;
@@ -235,7 +246,6 @@ public class Form {
                 sort,
                 sortDirection,
                 filtersString);
-        System.out.println(url);
         JSONObject json;
         JSONArray rawNodes = new JSONArray();
         int rawCount = 0;

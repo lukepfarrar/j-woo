@@ -15,6 +15,7 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.lang3.Validate;
 
 public class JWufooAPI {
 
@@ -23,10 +24,12 @@ public class JWufooAPI {
     List<Form> forms;
     List<Report> reports;
     List<User> users;
+    private String BASE_URL;
 
     public JWufooAPI(String key, String account) {
         this.key = key;
         this.account = account;
+        BASE_URL = "https://" + account + ".wufoo.com/api/v3/";
     }
 
     public String getKey() {
@@ -45,11 +48,24 @@ public class JWufooAPI {
         this.account = account;
     }
 
+    public Form getForm(String formId) throws FormNotFoundException {
+        Validate.notBlank(formId);
+        List<Form> forms = getForms(BASE_URL + "forms/"+formId + ".json");
+        if (forms.isEmpty()) {
+            throw new FormNotFoundException(formId);
+        }
+        return forms.get(0);
+    }
+
     public List<Form> getForms() {
+        return getForms(BASE_URL+"forms.json");
+    }
+
+    private List<Form> getForms(String url) {
         if (forms == null) {
             forms = new ArrayList<Form>();
             try {
-                JSONObject json = this.makeRequest("https://" + account + ".wufoo.com/api/v3/forms.json");
+                JSONObject json = this.makeRequest(url);
                 JSONArray rawNodes = json.getJSONArray("Forms");
                 int rawCount = rawNodes.length();
                 for (int i = 0; i < rawCount; i++) {
