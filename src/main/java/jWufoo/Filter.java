@@ -2,6 +2,10 @@ package jWufoo;
 
 public class Filter {
 
+    String getFilterAs(int i) {
+            return String.format("&Filter%s=%s+%s+%s", i, matchTarget, operator, getValue());
+    }
+
     public enum OPERATOR {
         Contains,
         Does_not_contain,
@@ -16,26 +20,24 @@ public class Filter {
         Is_equal_to,
         Is_not_NULL
     }
-    Field field;
+    
+    String matchTarget;
     OPERATOR operator;
     String value;
 
-    public Field getField() {
-        return field;
-    }
-
-    public OPERATOR getOperator() {
-        return operator;
-    }
 
     @SuppressWarnings("deprecation")
-    public String getValue() {
+    private String getValue() {
         return java.net.URLEncoder.encode(this.value);
     }
 
-    public Filter(Field field, OPERATOR operator, String value) {
-        this.field = field;
+    public Filter(String matchTarget, OPERATOR operator, String value) {
+        this.matchTarget = matchTarget;
         this.operator = operator;
         this.value = value;
+    }
+    
+    public Filter(Field field, OPERATOR operator, String value) {
+        this(field.id, operator, value);
     }
 }

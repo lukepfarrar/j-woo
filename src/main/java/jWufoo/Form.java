@@ -235,7 +235,7 @@ public class Form {
         StringBuilder filtersBuilder = new StringBuilder();
         for (int looper = 0; looper < filters.size(); looper++) {
             Filter filter = filters.get(looper);
-            filtersBuilder.append(String.format("&Filter%s=%s+%s+%s", looper + 1, filter.getField().id, filter.getOperator(), filter.getValue()));
+            filtersBuilder.append(filter.getFilterAs(looper+1));
         }
         String filtersString = filtersBuilder.toString();
 
